@@ -1,8 +1,0 @@
-spell
-*.o
-*.so
-*.pyc
-*.cache
-.undo
-tags
-.netrwhist
