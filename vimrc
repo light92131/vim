@@ -7,6 +7,7 @@ endif
 unlet s:dir
 unlet s:file
  
+
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/adlawson/vim-sorcerer.git'
 Plug 'https://github.com/vim-scripts/ScrollColors.git'
@@ -23,6 +24,7 @@ if has("gui_running")
     set guifont=DejaVu_Sans_Mono:h10:cANSI:qDRAFT
   endif
 endif
+
 
 set columns=200
 set lines=68
