@@ -10,6 +10,7 @@ unlet s:file
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/adlawson/vim-sorcerer.git'
 Plug 'https://github.com/vim-scripts/ScrollColors.git'
+Plug 'vim-airline/vim-airline'
 call plug#end()
 
 
