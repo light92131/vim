@@ -1,5 +1,17 @@
-set columns=200
-set lines=68
+let s:dir = split(&rtp, ",")[0]
+let s:file = expand(s:dir . '/autoload/plug.vim')
+if empty(globpath(s:dir, '/autoload/plug.vim'))
+  execute "!curl -fLo " . s:file . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+unlet s:dir
+unlet s:file
+ 
+call plug#begin('~/.vim/plugged')
+Plug 'https://github.com/adlawson/vim-sorcerer.git'
+Plug 'https://github.com/vim-scripts/ScrollColors.git'
+call plug#end()
+
 
 if has("gui_running")
   if has("gui_gtk2")
@@ -11,15 +23,6 @@ if has("gui_running")
   endif
 endif
 
-let s:dir = split(&rtp, ",")[0]
-let s:file = expand(s:dir . '/autoload/plug.vim')
-if empty(globpath(s:dir, '/autoload/plug.vim'))
-  execute "!curl -fLo " . s:file . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-unlet s:dir
-unlet s:file
- 
-call plug#begin('~/.vim/plugged')
-Plug 'https://github.com/vim-scripts/ScrollColors.git'
-call plug#end()
+set columns=200
+set lines=68
+color sorcerer
