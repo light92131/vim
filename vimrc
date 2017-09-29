@@ -8,10 +8,26 @@ unlet s:dir
 unlet s:file
  
 
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.py
+  endif
+endfunction
+
+
+let g:ycm_server_python_interpreter = '/usr/bin/python'
+let g:ycm_server_use_vim_stdout = 1
+let g:ycm_server_log_level = 'debug'
+
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/adlawson/vim-sorcerer.git'
 Plug 'https://github.com/vim-scripts/ScrollColors.git'
 Plug 'vim-airline/vim-airline'
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 call plug#end()
 
 
@@ -24,7 +40,6 @@ if has("gui_running")
     set guifont=DejaVu_Sans_Mono:h10:cANSI:qDRAFT
   endif
 endif
-
 
 set columns=200
 set lines=68
