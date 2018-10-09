@@ -35,9 +35,11 @@ Plug 'vim-syntastic/syntastic'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'kien/ctrlp.vim'
+Plug 'https://github.com/majutsushi/tagbar'
 call plug#end()
 
 let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_global_ycm_extra_conf = '~/.vim/global_ycm_extra_conf.py'
 map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 if has("gui_running")
@@ -58,10 +60,10 @@ set foldmethod=indent
 set foldlevel=99
 
 " Split navigations
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+nnoremap <C-j> <C-W><C-J>
+nnoremap <C-k> <C-W><C-K>
+nnoremap <C-l> <C-W><C-L>
+nnoremap <C-h> <C-W><C-H>
 
 " Dangling whitespace
 highlight BadWhitespace ctermbg=red guibg=red
@@ -74,6 +76,20 @@ autocmd BufRead,BufNewFile *.py,*.pyw,*.c,*.cpp,*.h match BadWhitespace /\s\+$/
 
 " Fold with spacebar
 nnoremap <space> za
+
+" C/C++ stuff
+autocmd BufNewFile,BufRead *.cpp,*.hpp,*.c,*.h set
+     \ tabstop=4
+     \ softtabstop=4
+     \ shiftwidth=4
+     \ textwidth=79
+     \ expandtab
+     \ autoindent
+     \ smartindent
+     \ fileformat=unix
+     \ encoding=utf-8
+     \ comments=sl:/*,mb:\ *,elx:\ */
+autocmd BufNewFile,BufRead *.cpp,*.hpp,*.c,*.h syntax enable
 
 " Python stuff
 autocmd BufNewFile,BufRead *.py set
