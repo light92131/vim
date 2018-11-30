@@ -102,11 +102,10 @@ autocmd BufNewFile,BufRead *.py set
      \ fileformat=unix
      \ encoding=utf-8
 
-autocmd VimEnter * NERDTree
-
 set number
 color sorcerer-approx
 
 set exrc
 set secure
+set path=$PWD/**
 
