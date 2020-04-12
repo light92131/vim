@@ -23,6 +23,8 @@ let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_server_use_vim_stdout = 1
 let g:ycm_server_log_level = 'debug'
 
+let g:rtagsUseDefaultMappings = 0
+
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/godlygeek/csapprox.git'
 Plug 'https://github.com/adlawson/vim-sorcerer.git'
@@ -31,11 +33,15 @@ Plug 'vim-airline/vim-airline'
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 Plug 'tmhedberg/SimpylFold'
 Plug 'vim-scripts/indentpython.vim'
-Plug 'vim-syntastic/syntastic'
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
+"Plug 'vim-syntastic/syntastic'
+"Plug 'scrooloose/nerdtree'
+"Plug 'jistr/vim-nerdtree-tabs'
 Plug 'kien/ctrlp.vim'
 Plug 'https://github.com/majutsushi/tagbar'
+Plug 'https://github.com/LucHermitte/lh-vim-lib.git'
+Plug 'https://github.com/LucHermitte/alternate-lite.git'
+Plug 'therivenman/vim-rtags'
+Plug 'ericcurtin/CurtineIncSw.vim'
 call plug#end()
 
 let g:ycm_autoclose_preview_window_after_completion=1
@@ -77,6 +83,11 @@ autocmd BufRead,BufNewFile *.py,*.pyw,*.c,*.cpp,*.h match BadWhitespace /\s\+$/
 " Fold with spacebar
 nnoremap <space> za
 
+" rtags mappings
+noremap <c-]> :call rtags#JumpTo(g:SAME_WINDOW)<CR>
+noremap <c-t> :call rtags#JumpBack()<CR>
+
+
 " C/C++ stuff
 autocmd BufNewFile,BufRead *.cpp,*.hpp,*.c,*.h set
      \ tabstop=4
@@ -108,4 +119,6 @@ color sorcerer-approx
 set exrc
 set secure
 set path=$PWD/**
-
+if match($TERM, "screen.xterm-256color")!=-1
+	set term=xterm-256color
+endif
